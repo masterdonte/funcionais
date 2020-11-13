@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:s2gpi="http://facelets.tjrn.jus.br"
+    xmlns:s2gpicc="http://java.sun.com/jsf/composite/util"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h2>@DOMINIO@</h2>
+    
+    <h:panelGroup styleClass="busca" layout="block">
+        <h:form>
+            <h:panelGrid columns="1" style="float:left;">
+            <h:commandButton id="btnForm" image="#{resource['images:Add.png']}" style="vertical-align: middle; border-width: 0px;"
+                actionListener="#{@OBJ_BEAN@.loadInsertMode}"> Novo </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+            
+        <h:form id="frmSearch">
+            <h:panelGrid columns="6" style="float:right;"> 
+            <f:validateBean disabled="true">
+               
+                    <h:outputText value="Busca"/>
+                    <h:inputText value="#{@OBJ_BEAN@.campoBusca}"/>
+                                       
+                    <h:commandButton id="btnSearch" image="#{resource['images:Search.png']}" style="vertical-align: middle"
+                    actionListener="#{@OBJ_BEAN@.search}"/>               
+
+            </f:validateBean>
+            </h:panelGrid>
+            <div style="clear:both;"></div>
+        </h:form>
+    </h:panelGroup>
+
+    <h:form id="frmSearchList">
+        
+       <p:dataTable id="dtTable" var="obj" value="#{@OBJ_BEAN@.dataLazyModel}"  
+            paginator="true" rows="10" lazy="true" 
+            paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} Foram encontrados #{@OBJ_BEAN@.dataLazyModel.rowCount} registros."
+            paginatorPosition="bottom" styleClass="tabela"
+            currentPageReportTemplate="{currentPage} de {totalPages}"
+            rowsPerPageTemplate="10,20,30" emptyMessage="Sem registros encontrados">
+            
+            <p:column styleClass="minilupa">
+                <h:commandLink value="Cadastro" title="Visualizar o cadastro completo" actionListener="#{@OBJ_BEAN@.loadEditMode(obj)}"/>    
+            </p:column>
+            
+            <p:column headerText="Id">
+                <h:outputText value="#{obj.id}" />
+            </p:column>          
+
+       </p:dataTable>
+    </h:form>
+</ui:composition>
+

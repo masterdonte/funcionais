@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:s2gpi="http://facelets.tjrn.jus.br"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:s2gpicc="http://java.sun.com/jsf/composite/util">
+
+  <h2>@DOMINIO@</h2>
+
+  <h:form id="frmSave">
+    <div class="formulario">
+      <p:focus />
+      <h:inputHidden id="id" value="#{@OBJ_BEAN@.entity.id}" />
+
+      <h:panelGroup styleClass="finput">
+        <s2gpi:inputText id="campo1" label="campo1*" style="width:350px;" value="#{@OBJ_BEAN@.entity.campo1}" />
+      </h:panelGroup>     
+      
+      <h:panelGroup styleClass="finput">
+        <s2gpi:inputText id="campo2" label="campo2*" style="width:500px;" value="#{@OBJ_BEAN@.entity.campo2}" />
+      </h:panelGroup>
+      
+      <h:panelGroup styleClass="finput">
+        <s2gpi:inputText id="campo3" label="campo3*" style="width:58px;" value="#{@OBJ_BEAN@.entity.campo3}" />
+      </h:panelGroup>
+      
+      <div style="clear: both"></div>
+    </div>       
+    
+   <h:panelGrid columns="2" style="float: left;">
+      	<h:commandButton id="btnSave" styleClass="salvar" title="Salvar Registro" actionListener="#{@OBJ_BEAN@.saveAndContinue}"/>
+    
+		<h:commandButton id="btnExcluir" disabled="#{@OBJ_BEAN@.actionInsert}" title="Excluir Registro" styleClass="#{@OBJ_BEAN@.actionInsert ? 'excluir-disable' : 'excluir'}"> 
+		    <f:setPropertyActionListener value="#{@OBJ_BEAN@.entity}" target="#{@OBJ_BEAN@.entity}" />
+		    <p:ajax oncomplete="confirmation.show()"></p:ajax> 
+		</h:commandButton>
+
+   </h:panelGrid>
+   <s2gpicc:confirmDelete id="cnfDelete" action="#{@OBJ_BEAN@.delete}" update=":mainBody, :messages" />
+    
+  </h:form>
+  
+  <h:form>
+    <h:panelGrid style="float:left">
+    	<h:commandButton id="btnNovo" styleClass="novo" title="Novo Registro" actionListener="#{@OBJ_BEAN@.loadInsertMode}"/>
+    </h:panelGrid>
+     
+    <h:panelGrid columns="3" style="float: right;">
+        <h:commandButton id="btnVoltar" styleClass="voltar" title="Voltar para a listagem" immediate="true" actionListener="#{@OBJ_BEAN@.loadSearchMode}"/>
+    </h:panelGrid>
+  </h:form>
+</ui:composition>

@@ -1,0 +1,22 @@
+<ui:composition template="/templates/container.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:sec="http://www.springframework.org/security/tags">
+    
+    <ui:define name="conteudo">
+        <h:panelGroup id="pnlMain" layout="block">
+            <h:panelGroup id="pnlForm" rendered="#{@OBJ_BEAN@.pageForm}" layout="block">
+                <ui:insert name="form">
+                    <ui:include src="/pages/container/@OBJDOMPASTA@/form.xhtml" />
+                </ui:insert>
+            </h:panelGroup>
+            <h:panelGroup id="pnlList" rendered="#{@OBJ_BEAN@.pageList}" layout="block">
+                <ui:insert name="list">
+                    <ui:include src="/pages/container/@OBJDOMPASTA@/list.xhtml" />
+                </ui:insert>
+            </h:panelGroup>
+        </h:panelGroup>
+    </ui:define>
+    
+</ui:composition>

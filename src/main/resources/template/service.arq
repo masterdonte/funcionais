@@ -1,0 +1,8 @@
+package br.gov.ma.emap.@SISTEMA@.container.service;
+
+import br.jus.tjrn.arq.service.CrudService;
+import br.gov.ma.emap.@SISTEMA@.container.dominio.@DOMINIO@;
+
+public interface @INTERFACE_SERVICE@ extends CrudService<@DOMINIO@> {
+
+}

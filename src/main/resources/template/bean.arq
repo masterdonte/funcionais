@@ -1,0 +1,59 @@
+package br.gov.ma.emap.@SISTEMA@.container.web;
+
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import br.jus.tjrn.arq.exception.ServiceBusinessException;
+import br.gov.ma.emap.@SISTEMA@.arquitetura.web.controller.AbstractCrudBean;
+import br.gov.ma.emap.@SISTEMA@.container.dominio.@DOMINIO@;
+import br.gov.ma.emap.@SISTEMA@.container.service.@INTERFACE_SERVICE@;
+
+
+@Controller
+@Scope("view")
+public class @BEAN@ extends AbstractCrudBean<@DOMINIO@, @INTERFACE_SERVICE@>{
+
+	private static final long serialVersionUID = 1L;
+	
+	private String campoBusca;  
+		
+	@Inject
+    public @BEAN@(@INTERFACE_SERVICE@ service) {
+		super(service);		
+	}
+	
+	@Override
+    protected void defineInitialMode() {
+        loadSearchMode();
+    }
+    
+	@PostConstruct
+	protected void Init(){		
+	}
+	
+	@Override
+    protected void onBeforeLoadEditMode(@DOMINIO@ entityToEdit) {		
+        super.onBeforeLoadEditMode(entityToEdit);
+    }
+	
+    @Override
+    protected List<@DOMINIO@> loadSearchData(int first, int pageSize, String sortField, boolean sortOrder) {
+      return super.loadSearchData(first, pageSize, "id", sortOrder);
+    }
+
+    @Override
+    protected void onBeforeSave(@DOMINIO@ entityToSave) throws ServiceBusinessException {
+        super.onBeforeSave(entityToSave);
+    }
+    
+    public String getCampoBusca() {
+        return campoBusca;
+    }
+    
+    public void setCampoBusca(String campoBusca) {
+        this.campoBusca = campoBusca;
+    }	
+}
+

@@ -1,0 +1,8 @@
+package br.gov.ma.emap.@SISTEMA@.container.dao;
+
+import br.jus.tjrn.arq.persistence.CrudDao;
+import br.gov.ma.emap.@SISTEMA@.container.dominio.@DOMINIO@;
+
+public interface @INTERFACE_DAO@ extends CrudDao<@DOMINIO@>{
+    
+}

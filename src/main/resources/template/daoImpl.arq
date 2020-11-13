@@ -1,0 +1,12 @@
+package br.gov.ma.emap.@SISTEMA@.container.dao;
+
+import org.springframework.stereotype.Repository;
+import br.gov.ma.emap.@SISTEMA@.container.dominio.@DOMINIO@;
+import br.jus.tjrn.arq.persistence.hibernate.HibernateTemplateCrudDao;
+
+@Repository
+public class @CLASSE_DAO@ extends HibernateTemplateCrudDao<@DOMINIO@> implements @INTERFACE_DAO@ {
+
+	private static final long serialVersionUID = 1L;	
+
+}
